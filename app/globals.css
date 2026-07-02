@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: theme("colors.bg");
+  color: theme("colors.text");
+  font-family: theme("fontFamily.sans");
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle top-lit ambient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 500px at 80% -10%, rgba(245, 184, 65, 0.08), transparent 60%),
+    radial-gradient(700px 500px at 0% 0%, rgba(110, 123, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs tracking-widest text-accent uppercase;
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl font-semibold tracking-tight text-text;
+  }
+
+  .card {
+    @apply rounded-xl border border-border bg-surface/70 backdrop-blur-sm transition-colors duration-200;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-md border border-border bg-surface2 px-2.5 py-1 font-mono text-[11px] text-muted;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-bg hover:bg-[#ffca55];
+  }
+
+  .btn-ghost {
+    @apply btn border border-border text-text hover:border-accent hover:text-accent;
+  }
+
+  .link-muted {
+    @apply text-muted transition-colors duration-200 hover:text-text;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-blink {
+    animation: none !important;
+  }
+}
