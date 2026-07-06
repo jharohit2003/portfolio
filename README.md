@@ -41,5 +41,4 @@ app/          layout, global styles, page
 components/    Navbar, Hero, About, Experience, Projects, Skills, Education, Contact, Footer
 lib/data.ts   all editable content
 public/        resume PDF + static assets
-
 ```

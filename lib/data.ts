@@ -142,7 +142,7 @@ export type Education = {
 export const education: Education[] = [
   {
     school: "IMS Engineering College, Ghaziabad, UP",
-    detail: "B.Tech. in Computer Science — GPA 8.78/10",
+    detail: "B.Tech. in Computer Science — GPA 8.94/10",
     period: "Sep 2022 — May 2026",
   },
   {
