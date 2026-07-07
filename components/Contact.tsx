@@ -1,21 +1,22 @@
+"use client";
+
 import { Github, Linkedin, Mail } from "lucide-react";
 import Reveal from "./Reveal";
 import { profile } from "@/lib/data";
+import { useI18n } from "./LanguageProvider";
 
 export default function Contact() {
+  const { t } = useI18n();
   return (
     <section id="contact" className="scroll-mt-24 py-24 sm:py-32">
       <div className="container-x">
         <Reveal>
           <div className="card mx-auto max-w-2xl p-10 text-center">
-            <p className="eyebrow">06 — Contact</p>
+            <p className="eyebrow">{t.contact.eyebrow}</p>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              Let&apos;s build something.
+              {t.contact.heading}
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-muted">
-              Open to full-time and freelance work in full-stack and Generative AI. The fastest way to reach me is
-              email.
-            </p>
+            <p className="mx-auto mt-4 max-w-md text-muted">{t.contact.body}</p>
 
             <a href={`mailto:${profile.email}`} className="btn-primary mt-8">
               <Mail size={16} /> {profile.email}

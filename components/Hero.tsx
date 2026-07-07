@@ -1,8 +1,12 @@
+"use client";
+
 import { ArrowUpRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { profile } from "@/lib/data";
+import { useI18n } from "./LanguageProvider";
 import Reveal from "./Reveal";
 
 export default function Hero() {
+  const { t } = useI18n();
   return (
     <section id="top" className="relative flex min-h-[92vh] items-center pt-16">
       <div className="container-x grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
@@ -11,7 +15,7 @@ export default function Hero() {
           <Reveal>
             <p className="mb-6 font-mono text-sm text-muted">
               <span className="text-accent">rohit@portfolio</span>:<span className="text-[#6E7BFF]">~</span>${" "}
-              whoami
+              {t.hero.whoami}
               <span className="ml-1 inline-block h-4 w-2 translate-y-0.5 bg-accent animate-blink" aria-hidden />
             </p>
           </Reveal>
@@ -23,20 +27,20 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="mt-4 font-display text-xl text-accent sm:text-2xl">{profile.role}</p>
+            <p className="mt-4 font-display text-xl text-accent sm:text-2xl">{t.hero.role}</p>
           </Reveal>
 
           <Reveal delay={240}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">{profile.tagline}</p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">{t.hero.tagline}</p>
           </Reveal>
 
           <Reveal delay={320}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a href="#work" className="btn-primary">
-                View work <ArrowUpRight size={16} />
+                {t.hero.viewWork} <ArrowUpRight size={16} />
               </a>
               <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-                <Download size={16} /> Resume
+                <Download size={16} /> {t.hero.resume}
               </a>
             </div>
           </Reveal>

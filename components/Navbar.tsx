@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/data";
+import { useI18n } from "./LanguageProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
+  const { t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -27,36 +30,40 @@ export default function Navbar() {
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((l) => (
+          {navLinks.map((l, i) => (
             <a key={l.href} href={l.href} className="link-muted text-sm">
-              {l.label}
+              {t.nav.links[i]}
             </a>
           ))}
+          <LanguageSwitcher />
           <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="btn-primary !py-2 !px-4 text-sm">
-            Resume
+            {t.nav.resume}
           </a>
         </div>
 
-        <button
-          className="text-text md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <LanguageSwitcher />
+          <button
+            className="text-text"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {open && (
         <div className="border-t border-border bg-bg/95 backdrop-blur-md md:hidden">
           <div className="container-x flex flex-col gap-1 py-4">
-            {navLinks.map((l) => (
+            {navLinks.map((l, i) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="link-muted py-2 text-sm"
               >
-                {l.label}
+                {t.nav.links[i]}
               </a>
             ))}
             <a
@@ -66,7 +73,7 @@ export default function Navbar() {
               className="btn-primary mt-2 w-full"
               onClick={() => setOpen(false)}
             >
-              Resume
+              {t.nav.resume}
             </a>
           </div>
         </div>
